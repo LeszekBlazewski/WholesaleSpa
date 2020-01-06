@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ComponentsModule } from './components/components/components.module';
-import { SharedModule } from './components/components/shared/shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
 import { PagesModule } from './pages/pages.module';
+import { ComponentsModule } from './components/components.module';
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [
