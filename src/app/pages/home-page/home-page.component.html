@@ -4,9 +4,14 @@
             <h1 class="display-4 text-white text-uppercase my-jumbotron-text">Welcome to <span class="font-weight-bold"
                     style="color:#9933CC">Wholesale </span> e-shop.
             </h1>
-            <h1 class="text-white lead">
+            <h1 class="text-white lead" *ngIf="!currentUser; else loggedIn">
                 Please login or register to access the shop.
             </h1>
+            <ng-template #loggedIn>
+                <h1 class="text-white lead">
+                    Navigate to desired functionality by choosing adequate option on the top of the screen.
+                </h1>
+            </ng-template>
         </div>
     </div>
 </div>

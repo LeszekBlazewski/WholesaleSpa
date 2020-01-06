@@ -1,20 +1,22 @@
 <div class="container">
     <form [formGroup]="loginForm">
-        <h1 class="display-1">Logowanie</h1>
+        <h1 class="display-1">Login</h1>
         <mat-form-field class="full-width">
-            <input matInput placeholder="Adres email" formControlName="email">
+            <input matInput placeholder="Email address" formControlName="email">
             <mat-error> {{getErrorMessage()}} </mat-error>
         </mat-form-field>
 
         <mat-form-field class="full-width">
-            <input matInput placeholder="Hasło" formControlName="password" [type]="hide ? 'password' : 'text'">
-            <mat-error> Hasło jest wymagane </mat-error>
+            <input matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'">
+            <mat-error> Password is required </mat-error>
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
-
-        <button class="button" mat-raised-button color="primary" (click)="onSubmit()">Zaloguj się</button>
+        <div class="d-flex justify-content-center mb-2">
+            Don't have an account yet? <a [routerLink]="['/register']" class="ml-2">Sign Up</a>
+        </div>
+        <button class="button" mat-raised-button color="primary" (click)="onSubmit()">Login</button>
     </form>
 </div>

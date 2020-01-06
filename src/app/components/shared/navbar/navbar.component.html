@@ -9,19 +9,8 @@
         <ul class="navbar-nav ml-auto">
             <!-- O nas  -->
             <li class="nav-item">
-                <button type="button" class="btn btn-primary" [routerLink]="['/about']">O nas</button>
+                <button type="button" class="btn btn-primary" [routerLink]="['/about']">About</button>
             </li>
-
-            <!-- Dieta pudełkowa -->
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Dieta pudełkowa
-                </button>
-                <div class="dropdown-menu">
-                    <button class="dropdown-item" [routerLink]="['/box-diet/offer']">Oferta</button>
-                    <button class="dropdown-item" [routerLink]="['/order']"> Zamówienie</button>
-                </div>
-            </div>
 
             <!-- Twoje konto-->
             <div class="dropdown" *ngIf="currentUser">
@@ -46,19 +35,6 @@
                     <button class="dropdown-item" [routerLink]="['/admin/recipes']">Przykładowe przepisy</button>
                 </div>
             </div>
-
-            <!-- Opinie  -->
-            <li class="nav-item">
-                <button type="button" class="btn btn-primary" [routerLink]="['/feedbacks']">Opinie klientów</button>
-            </li>
-            <!-- Kontakt  -->
-            <li class="nav-item">
-                <button type="button" class="btn btn-primary" [routerLink]="['/contact']">Kontakt</button>
-            </li>
-            <!-- Rejestracja  -->
-            <li class="nav-item" *ngIf="!currentUser">
-                <button type="button" class="btn btn-primary" [routerLink]="['/register']">Rejestracja</button>
-            </li>
             <!-- Logowanie  -->
             <li class="nav-item" *ngIf="!currentUser">
                 <button type="button" class="btn btn-primary" [routerLink]="['/login']">Logowanie</button>

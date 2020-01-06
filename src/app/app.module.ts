@@ -9,6 +9,10 @@ import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/materi
 import { PagesModule } from './pages/pages.module';
 import { ComponentsModule } from './components/components.module';
 import { SharedModule } from './components/shared/shared.module';
+import { AuthenticationService } from './services/authentication.service';
+import { BaseService } from './services/base.service';
+import { UserService } from './services/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,9 +25,10 @@ import { SharedModule } from './components/shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
-  providers: [
+  providers: [BaseService, AuthenticationService, UserService,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]
