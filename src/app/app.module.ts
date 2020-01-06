@@ -3,16 +3,29 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentsModule } from './components/components/components.module';
+import { SharedModule } from './components/components/shared/shared/shared.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    ComponentsModule,
+    SharedModule,
+    PagesModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

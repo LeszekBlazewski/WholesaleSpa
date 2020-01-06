@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary sticky-top nav-background">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#collapse_target">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapse_target">
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img src="../../assets/navbar_logo.png" width="200" height="40">
+        </a>
+        <ul class="navbar-nav ml-auto">
+            <!-- O nas  -->
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary" [routerLink]="['/about']">O nas</button>
+            </li>
+
+            <!-- Dieta pudełkowa -->
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Dieta pudełkowa
+                </button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item" [routerLink]="['/box-diet/offer']">Oferta</button>
+                    <button class="dropdown-item" [routerLink]="['/order']"> Zamówienie</button>
+                </div>
+            </div>
+
+            <!-- Twoje konto-->
+            <div class="dropdown" *ngIf="currentUser">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Twoje konto
+                </button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item" [routerLink]="['/user/details']">Dane osobowe</button>
+                    <button class="dropdown-item" [routerLink]="['/user/order-history']">Twoje zamówienia</button>
+                    <button class="dropdown-item" (click)="logout()">Wyloguj</button>
+                </div>
+            </div>
+
+            <!-- Panel pracownika -->
+            <div class="dropdown" *ngIf="isAdmin">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Panel pracownika
+                </button>
+                <div class="dropdown-menu">
+                    <button class="dropdown-item" [routerLink]="['/admin/users']">Użytkownicy</button>
+                    <button class="dropdown-item" [routerLink]="['/admin/diets']">Diety</button>
+                    <button class="dropdown-item" [routerLink]="['/admin/recipes']">Przykładowe przepisy</button>
+                </div>
+            </div>
+
+            <!-- Opinie  -->
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary" [routerLink]="['/feedbacks']">Opinie klientów</button>
+            </li>
+            <!-- Kontakt  -->
+            <li class="nav-item">
+                <button type="button" class="btn btn-primary" [routerLink]="['/contact']">Kontakt</button>
+            </li>
+            <!-- Rejestracja  -->
+            <li class="nav-item" *ngIf="!currentUser">
+                <button type="button" class="btn btn-primary" [routerLink]="['/register']">Rejestracja</button>
+            </li>
+            <!-- Logowanie  -->
+            <li class="nav-item" *ngIf="!currentUser">
+                <button type="button" class="btn btn-primary" [routerLink]="['/login']">Logowanie</button>
+            </li>
+        </ul>
+    </div>
+</nav>
