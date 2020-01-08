@@ -5,8 +5,9 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
+import { BrowseProductsComponent } from './browse-products/browse-products.component';
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, BrowseProductsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -14,6 +15,6 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     RouterModule
   ],
-  exports: [LoginComponent, RegisterComponent]
+  exports: [LoginComponent, RegisterComponent, BrowseProductsComponent]
 })
 export class ComponentsModule { }

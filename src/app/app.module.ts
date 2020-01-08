@@ -13,6 +13,8 @@ import { AuthenticationService } from './services/authentication.service';
 import { BaseService } from './services/base.service';
 import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductService } from './services/product.service';
+import { OrderService } from './services/order.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     HttpClientModule
   ],
-  providers: [BaseService, AuthenticationService, UserService,
+  providers: [BaseService, AuthenticationService, UserService, ProductService, OrderService,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]

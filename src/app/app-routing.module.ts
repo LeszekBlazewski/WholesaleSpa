@@ -4,6 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { BrowseProductsComponent } from './components/browse-products/browse-products.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'about',
     component: AboutPageComponent
+  },
+  {
+    path: 'products',
+    component: BrowseProductsComponent
   },
   {
     path: '**',

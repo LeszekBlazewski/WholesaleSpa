@@ -8,6 +8,8 @@ export const environment = {
   userRegisterUrl: "register/",
   userLoginUrl: "login/",
   usersUrl: "users/",
+  productsUrl: "products/",
+  orderUrl: "orders/",
 };
 
 /*
