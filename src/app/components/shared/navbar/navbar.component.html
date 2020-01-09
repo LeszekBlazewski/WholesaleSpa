@@ -17,14 +17,14 @@
             </li>
 
             <!-- Twoje konto-->
-            <div class="dropdown" *ngIf="currentUser">
+            <div class="dropdown" *ngIf="!currentUser">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Twoje konto
+                    Your account
                 </button>
                 <div class="dropdown-menu">
-                    <button class="dropdown-item" [routerLink]="['/user/details']">Dane osobowe</button>
-                    <button class="dropdown-item" [routerLink]="['/user/order-history']">Twoje zamówienia</button>
-                    <button class="dropdown-item" (click)="logout()">Wyloguj</button>
+                    <!-- <button class="dropdown-item" [routerLink]="['/user/details']">User data</button> -->
+                    <button class="dropdown-item" [routerLink]="['/user/order-history']">Your orders</button>
+                    <button class="dropdown-item" (click)="logout()">Log out</button>
                 </div>
             </div>
 

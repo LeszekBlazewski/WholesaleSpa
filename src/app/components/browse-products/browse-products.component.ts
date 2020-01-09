@@ -175,11 +175,13 @@ export class BrowseProductsComponent implements OnInit {
   placeOrder() {
 
     const order = <Order>{
-      clientId: 1,
+      clientId: 1,    // Moq this.authenticationService.currentUserValue.userId,
       date: new Date(),
       orderDetails: this.selectedProducts.map(p => <OrderDetail>{ product: p.product, amount: p.amount.value }),
-      status: OrderStatus.created
+      status: OrderStatus.created,
     }
+
+    // Moq
     // this.orderService.placeOrder(order).subscribe(resp =>
     //   this.snackBar.open('Your order has been placed !', null, {
     //     duration: 2000,
@@ -189,16 +191,6 @@ export class BrowseProductsComponent implements OnInit {
     //     duration: 2000,
     //     horizontalPosition: "right"
     //   }));
-
-    console.log(JSON.stringify(order));
-
-
-
-
-    this.snackBar.open('Your order has been placed !', null, {
-      duration: 2000,
-      horizontalPosition: "right"
-    });
   }
 }
 

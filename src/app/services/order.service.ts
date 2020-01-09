@@ -15,4 +15,8 @@ export class OrderService {
   placeOrder(order: Order): Observable<any> {
     return this.baseService.post(environment.orderUrl, order);
   }
+
+  getAllOrdersForUser(userId: number): Observable<Order[]> {
+    return this.baseService.get(environment.orderUrl + userId.toString());
+  }
 }
