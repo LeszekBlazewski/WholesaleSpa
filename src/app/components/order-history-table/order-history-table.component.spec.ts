@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserOrderHistoryComponent } from './user-order-history.component';
+import { OrderHistoryTableComponent } from './order-history-table.component';
 
-describe('UserOrderHistoryComponent', () => {
-  let component: UserOrderHistoryComponent;
-  let fixture: ComponentFixture<UserOrderHistoryComponent>;
+describe('OrderHistoryTableComponent', () => {
+  let component: OrderHistoryTableComponent;
+  let fixture: ComponentFixture<OrderHistoryTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserOrderHistoryComponent ]
+      declarations: [ OrderHistoryTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserOrderHistoryComponent);
+    fixture = TestBed.createComponent(OrderHistoryTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

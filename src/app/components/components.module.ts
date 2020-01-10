@@ -6,13 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/material.module';
 import { RouterModule } from '@angular/router';
 import { BrowseProductsComponent } from './product/browse-products/browse-products.component';
-import { UserOrderHistoryComponent } from './user-order-history/user-order-history.component';
 import { ProductTableComponent } from './product/product-table/product-table.component';
 import { CategoriesTableComponent } from './category/categories-table/categories-table.component';
 import { EditCategoryModalComponent } from './category/edit-category-modal/edit-category-modal.component';
 import { EditProductModalComponent } from './product/edit-product-modal/edit-product-modal.component';
+import { OrderHistoryTableComponent } from './order-history-table/order-history-table.component';
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, BrowseProductsComponent, UserOrderHistoryComponent, ProductTableComponent, CategoriesTableComponent, EditCategoryModalComponent, EditProductModalComponent],
+  declarations: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, EditCategoryModalComponent, EditProductModalComponent, OrderHistoryTableComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,6 +20,6 @@ import { EditProductModalComponent } from './product/edit-product-modal/edit-pro
     MaterialModule,
     RouterModule
   ],
-  exports: [LoginComponent, RegisterComponent, BrowseProductsComponent, UserOrderHistoryComponent, ProductTableComponent, CategoriesTableComponent]
+  exports: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, OrderHistoryTableComponent]
 })
 export class ComponentsModule { }

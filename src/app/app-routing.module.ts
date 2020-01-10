@@ -5,8 +5,9 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { BrowseProductsComponent } from './components/product/browse-products/browse-products.component';
-import { UserOrderHistoryComponent } from './components/user-order-history/user-order-history.component';
 import { ProductPageComponent } from './pages/product-page/product-page.component';
+import { UserOrderHistoryPageComponent } from './pages/user-order-history-page/user-order-history-page.component';
+import { AdminOrderHistoryPageComponent } from './pages/admin-order-history-page/admin-order-history-page.component';
 
 
 const routes: Routes = [
@@ -32,7 +33,11 @@ const routes: Routes = [
   },
   {
     path: 'user/order-history',
-    component: UserOrderHistoryComponent
+    component: UserOrderHistoryPageComponent
+  },
+  {
+    path: 'admin/order-history',
+    component: AdminOrderHistoryPageComponent
   },
   {
     path: 'admin/products',
