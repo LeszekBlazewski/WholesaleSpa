@@ -14,7 +14,8 @@ const FAKE_DATA: Order[] = [
   {
     date: now,
     status: OrderStatus.created,
-    orderDetails: [{ product: { name: 'nike low', price: 123.50, category: { name: 'Shoes' } }, amount: 2 },],
+    orderDetails: [{ product: { name: 'nike low', price: 123.50, category: { name: 'Shoes' } }, amount: 2 },
+    { product: { name: 'nike low', price: 123.50, category: { name: 'Shoes' } }, amount: 2 }],
     totalValue: 1
   },
   {
@@ -39,7 +40,7 @@ const FAKE_DATA: Order[] = [
 })
 export class UserOrderHistoryComponent implements OnInit {
 
-  orderDetailsDataSource: MatTableDataSource<OrderDetail>;
+  orderDetailsDataSource: MatTableDataSource<OrderDetail> = new MatTableDataSource();
 
   userOrders$: Observable<Order[]>
 
@@ -93,11 +94,7 @@ export class UserOrderHistoryComponent implements OnInit {
   }
 
   showOrderDetails(orderDetails: OrderDetail[]) {
-    if (this.orderDetailsDataSource === undefined)
-      this.orderDetailsDataSource = new MatTableDataSource(orderDetails);
-    else {
-      this.orderDetailsDataSource.data = orderDetails;
-    }
+    this.orderDetailsDataSource.data = orderDetails;
   }
 
   getTotalCost(): number {

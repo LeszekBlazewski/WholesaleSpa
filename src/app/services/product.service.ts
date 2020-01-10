@@ -14,4 +14,16 @@ export class ProductService {
   getAllProducts(): Observable<Product[]> {
     return this.baseService.get(environment.productsUrl);
   }
+
+  addProduct(product: Product): Observable<Product> {
+    return this.baseService.post(environment.productsUrl, product);
+  }
+
+  updateProduct(product: Product): Observable<any> {
+    return this.baseService.put(environment.productsUrl, product);
+  }
+
+  deleteProduct(product: Product): Observable<any> {
+    return this.baseService.delete(environment.productsUrl + product.productId.toString());
+  }
 }

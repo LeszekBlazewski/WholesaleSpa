@@ -15,6 +15,10 @@ import { UserService } from './services/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 import { OrderService } from './services/order.service';
+import { CategoryService } from './services/category.service';
+import { DeleteModalComponent } from './components/shared/delete-modal/delete-modal.component';
+import { EditProductModalComponent } from './components/product/edit-product-modal/edit-product-modal.component';
+import { EditCategoryModalComponent } from './components/category/edit-category-modal/edit-category-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,12 @@ import { OrderService } from './services/order.service';
     NgbModule,
     HttpClientModule
   ],
-  providers: [BaseService, AuthenticationService, UserService, ProductService, OrderService,
+  entryComponents: [
+    DeleteModalComponent,
+    EditProductModalComponent,
+    EditCategoryModalComponent
+  ],
+  providers: [BaseService, AuthenticationService, UserService, ProductService, OrderService, CategoryService,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]

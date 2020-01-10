@@ -3,7 +3,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule, MatTableModule, MatTooltipModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatExpansionModule, MatListModule, MatSidenavModule, MatCheckboxModule, MatStepperModule, MatSnackBarModule, MatSortModule } from '@angular/material';
+import { MatInputModule, MatTableModule, MatTooltipModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, MatExpansionModule, MatListModule, MatSidenavModule, MatCheckboxModule, MatStepperModule, MatSnackBarModule, MatSortModule, MatCardModule } from '@angular/material';
 import { MatMenuModule } from '@angular/material/menu';
 
 
@@ -26,6 +26,7 @@ const material = [
   MatStepperModule,
   MatSnackBarModule,
   MatSortModule,
+  MatCardModule
 ]
 
 

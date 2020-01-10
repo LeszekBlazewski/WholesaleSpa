@@ -29,14 +29,12 @@
             </div>
 
             <!-- Panel pracownika -->
-            <div class="dropdown" *ngIf="isAdmin">
+            <div class="dropdown" *ngIf="!isAdmin">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Panel pracownika
+                    Admin panel
                 </button>
                 <div class="dropdown-menu">
-                    <button class="dropdown-item" [routerLink]="['/admin/users']">Użytkownicy</button>
-                    <button class="dropdown-item" [routerLink]="['/admin/diets']">Diety</button>
-                    <button class="dropdown-item" [routerLink]="['/admin/recipes']">Przykładowe przepisy</button>
+                    <button class="dropdown-item" [routerLink]="['/admin/products']">Manage products</button>
                 </div>
             </div>
             <!-- Logowanie  -->
