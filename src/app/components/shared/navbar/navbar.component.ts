@@ -23,6 +23,15 @@ export class NavbarComponent {
     return this.currentUser && this.currentUser.role === Role.Admin;
   }
 
+  get isCourier() {
+    return this.currentUser && this.currentUser.role === Role.Courier;
+  }
+
+  get isClient() {
+    return this.currentUser && this.currentUser.role === Role.Client;
+  }
+
+
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);

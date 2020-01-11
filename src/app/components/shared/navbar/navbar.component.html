@@ -23,7 +23,8 @@
                 </button>
                 <div class="dropdown-menu">
                     <!-- <button class="dropdown-item" [routerLink]="['/user/details']">User data</button> -->
-                    <button class="dropdown-item" [routerLink]="['/user/order-history']">Your orders</button>
+                    <button class="dropdown-item" *ngIf="!isClient" [routerLink]="['/user/order-history']">Your
+                        orders</button>
                     <button class="dropdown-item" (click)="logout()">Log out</button>
                 </div>
             </div>
@@ -39,6 +40,12 @@
                     <button class="dropdown-item" [routerLink]="['/admin/statistics']">Show statistics</button>
                 </div>
             </div>
+
+            <!-- Panel kuriera -->
+            <li class="nav-item" *ngIf="!isCourier">
+                <button type="button" class="btn btn-primary" [routerLink]="['/courier/orders']">Pending orders</button>
+            </li>
+
             <!-- Logowanie  -->
             <li class="nav-item" *ngIf="!currentUser">
                 <button type="button" class="btn btn-primary" [routerLink]="['/login']">Logowanie</button>

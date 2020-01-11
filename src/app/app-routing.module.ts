@@ -9,6 +9,7 @@ import { ProductPageComponent } from './pages/product-page/product-page.componen
 import { UserOrderHistoryPageComponent } from './pages/user-order-history-page/user-order-history-page.component';
 import { AdminOrderHistoryPageComponent } from './pages/admin-order-history-page/admin-order-history-page.component';
 import { AdminStatisticsPageComponent } from './pages/admin-statistics-page/admin-statistics-page.component';
+import { CourierPendingOrdersPageComponent } from './pages/courier-pending-orders-page/courier-pending-orders-page.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'admin/statistics',
     component: AdminStatisticsPageComponent
+  },
+  {
+    path: 'courier/orders',
+    component: CourierPendingOrdersPageComponent
   },
   {
     path: '**',
