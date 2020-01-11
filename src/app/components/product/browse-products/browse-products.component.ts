@@ -75,7 +75,7 @@ export class BrowseProductsComponent implements OnInit {
     this.createTableData();
   }
 
-  private createTableData() {
+  createTableData() {
 
     // 1. fetch all products from api
     // this.productService.getAllProducts().subscribe(data => {

@@ -12,6 +12,8 @@ export const environment = {
   statisticsUrl: 'stats/',
   categoriesUrl: "categories/",
   orderUrl: "orders/",
+  couriersUrl: "couriers/",
+
 };
 
 /*

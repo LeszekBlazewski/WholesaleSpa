@@ -6,17 +6,10 @@
     <app-product-table [products]="products" [categories]="categories" class="full-width"></app-product-table>
 </div>
 
-<div class="row">
-    <div class="col-6 text-center">
-        <h1>Edit categories</h1>
-    </div>
+<div class="d-flex flex-row justify-content-center mt-3 mb-3">
+    <h1>Edit product categories</h1>
 </div>
 
-<div class="row">
-    <div class="col-6">
-        <app-categories-table [categories]="categories"></app-categories-table>
-    </div>
-    <div class="col-6">
-        <app-product-stats [productStats$]="productStats$"></app-product-stats>
-    </div>
+<div class="d-flex flex-row">
+    <app-categories-table [categories]="categories" class="full-width"></app-categories-table>
 </div>

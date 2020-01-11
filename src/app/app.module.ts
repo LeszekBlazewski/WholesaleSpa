@@ -19,6 +19,7 @@ import { CategoryService } from './services/category.service';
 import { DeleteModalComponent } from './components/shared/delete-modal/delete-modal.component';
 import { EditProductModalComponent } from './components/product/edit-product-modal/edit-product-modal.component';
 import { EditCategoryModalComponent } from './components/category/edit-category-modal/edit-category-modal.component';
+import { CourierService } from './services/courier.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { EditCategoryModalComponent } from './components/category/edit-category-
     EditProductModalComponent,
     EditCategoryModalComponent
   ],
-  providers: [BaseService, AuthenticationService, UserService, ProductService, OrderService, CategoryService,
+  providers: [BaseService, AuthenticationService, UserService, ProductService, OrderService, CategoryService, CourierService,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
   ],
   bootstrap: [AppComponent]

@@ -12,8 +12,9 @@ import { EditCategoryModalComponent } from './category/edit-category-modal/edit-
 import { EditProductModalComponent } from './product/edit-product-modal/edit-product-modal.component';
 import { OrderHistoryTableComponent } from './order-history-table/order-history-table.component';
 import { ProductStatsComponent } from './product/product-stats/product-stats.component';
+import { CourierStatsComponent } from './courier/courier-stats/courier-stats.component';
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, EditCategoryModalComponent, EditProductModalComponent, OrderHistoryTableComponent, ProductStatsComponent],
+  declarations: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, EditCategoryModalComponent, EditProductModalComponent, OrderHistoryTableComponent, ProductStatsComponent, CourierStatsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -21,6 +22,6 @@ import { ProductStatsComponent } from './product/product-stats/product-stats.com
     MaterialModule,
     RouterModule
   ],
-  exports: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, OrderHistoryTableComponent, ProductStatsComponent]
+  exports: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, OrderHistoryTableComponent, ProductStatsComponent, CourierStatsComponent]
 })
 export class ComponentsModule { }
