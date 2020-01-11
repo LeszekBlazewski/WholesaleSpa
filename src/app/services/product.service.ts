@@ -3,6 +3,7 @@ import { BaseService } from './base.service';
 import { Observable } from 'rxjs';
 import { Product } from '../models/Product';
 import { environment } from 'src/environments/environment';
+import { ProductStats } from '../models/ProductStats';
 
 @Injectable({
   providedIn: 'root'
@@ -26,4 +27,9 @@ export class ProductService {
   deleteProduct(product: Product): Observable<any> {
     return this.baseService.delete(environment.productsUrl + product.productId.toString());
   }
+
+  getProductStatistics(): Observable<ProductStats[]> {
+    return this.baseService.get(environment.productsUrl + environment.statisticsUrl);
+  }
+
 }

@@ -3,6 +3,8 @@ import { ProductService } from 'src/app/services/product.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { Product } from 'src/app/models/Product';
 import { Category } from 'src/app/models/Category';
+import { ProductStats } from 'src/app/models/ProductStats';
+import { Observable } from 'rxjs';
 
 const FAKE_DATA_CATEGORY: Category[] = [
   { categoryId: 1, name: 'shoes' },
@@ -34,6 +36,9 @@ export class ProductPageComponent implements OnInit, DoCheck {
   products: Product[];
 
   categories: Category[];
+
+  productStats$: Observable<ProductStats[]>;
+
   iterableDiffer: any;
 
   constructor(private productService: ProductService,
@@ -51,9 +56,13 @@ export class ProductPageComponent implements OnInit, DoCheck {
     this.categories = FAKE_DATA_CATEGORY;
 
 
+    //this.productStats$ = this.productService.getProductStatistics();
+
     //this.productService.getAllProducts().subscribe(p => this.products = p);
 
     //this.categoryService.getAllCategories().subscribe(c => this.categories = c);
+
+
 
   }
 

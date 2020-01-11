@@ -9,6 +9,7 @@ export const environment = {
   userLoginUrl: "login/",
   usersUrl: "users/",
   productsUrl: "products/",
+  statisticsUrl: 'stats/',
   categoriesUrl: "categories/",
   orderUrl: "orders/",
 };
