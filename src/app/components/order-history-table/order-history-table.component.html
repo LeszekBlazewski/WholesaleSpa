@@ -1,5 +1,5 @@
 <div class="d-flex flex-row">
-    <table mat-table [dataSource]="orders$ | async" matSort class="mat-elevation-z8 text-center full-width"
+    <table mat-table [dataSource]="orders" matSort class="mat-elevation-z8 text-center full-width"
         (matSortChange)="sortData($event)">
 
         <ng-container matColumnDef="date">

@@ -2,14 +2,35 @@
     <h1>Edit products</h1>
 </div>
 
-<div class="d-flex flex-row">
-    <app-product-table [products]="products" [categories]="categories" class="full-width"></app-product-table>
-</div>
+<ng-container *ngIf="(products && categories) else loading">
+    <div class="d-flex flex-row">
+        <app-product-table [products]="products" [categories]="categories" class="full-width"></app-product-table>
+    </div>
 
-<div class="d-flex flex-row justify-content-center mt-3 mb-3">
-    <h1>Edit product categories</h1>
-</div>
+    <div class="d-flex flex-row justify-content-center mt-3 mb-3">
+        <h1>Edit product categories</h1>
+    </div>
 
-<div class="d-flex flex-row">
-    <app-categories-table [categories]="categories" class="full-width"></app-categories-table>
-</div>
+    <div class="d-flex flex-row">
+        <app-categories-table [categories]="categories" class="full-width"></app-categories-table>
+    </div>
+</ng-container>
+
+
+<ng-template #loading>
+    <div class="centered-loader">
+        <div class="d-flex justify-content-center">
+            <div id="circle">
+                <div class="loader">
+                    <div class="loader">
+                        <div class="loader">
+                            <div class="loader">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="text-center" style="color: #673ab7 ">Loading products...</h3>
+    </div>
+</ng-template>

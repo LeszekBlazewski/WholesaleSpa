@@ -13,45 +13,6 @@ import { OrderStatus } from 'src/app/models/enums/OrderStatus';
 import { OrderService } from 'src/app/services/order.service';
 
 
-const FAKE_DATA: ProductTableRow[] = [
-  {
-    product: {
-      category: <Category>{ name: 'electronics' }, name: 'PC mouse', price: 30.54, stock: 78, productId: 1
-    }
-  },
-  {
-    product: {
-      category: <Category>{ name: 'electronics' }, name: 'Keyboard', price: 223.54, stock: 500, productId: 2
-    }
-  },
-  {
-    product: {
-      category: <Category>{ name: 'electronics' }, name: 'Router', price: 60, stock: 12, productId: 3
-    }
-  },
-  {
-    product: {
-      category: <Category>{ name: 'groceries' }, name: 'Apples', price: 10.65, stock: 10, productId: 4
-    }
-  },
-  {
-    product: {
-      category: <Category>{ name: 'groceries' }, name: 'Onions', price: 13.54, stock: 58, productId: 5
-    }
-  },
-  {
-    product: {
-      category: <Category>{ name: 'clothing' }, name: 'Supreme hoodie', price: 80.54, stock: 100, productId: 6
-    }
-  },
-  {
-    product: {
-      category: <Category>{ name: 'clothing' }, name: 'Nike dunk low', price: 323.54, stock: 28, productId: 7
-    }
-  }
-];
-
-
 @Component({
   selector: 'app-browse-products',
   templateUrl: './browse-products.component.html',
@@ -77,27 +38,15 @@ export class BrowseProductsComponent implements OnInit {
 
   createTableData() {
 
-    // 1. fetch all products from api
-    // this.productService.getAllProducts().subscribe(data => {
+    //1. fetch all products from api
+    this.productService.getAllProducts().subscribe(data => {
 
-    //   const tableRows: ProductTableRow[] = [];
+      const tableRows = data.map(p => <ProductTableRow>{ product: p, amount: new FormControl(1, ValidateProductAmount(p.stock)) });
 
-    //   data.forEach(fetchedProduct => {
-    //     const referencedTableRow: ProductTableRow = <ProductTableRow>{
-    //       product: fetchedProduct,
-    //       amount: new FormControl(1, ValidateProductAmount(fetchedProduct.stock))
-    //     }
-    //     tableRows.push(referencedTableRow);
-    //   })
-
-    //   this.dataSource = new MatTableDataSource<ProductTableRow>(tableRows);
-    // });
-
-    // Moq
-    FAKE_DATA.forEach(d => d.amount = new FormControl(1, ValidateProductAmount(d.product.stock)));
-    this.dataSource = new MatTableDataSource<ProductTableRow>(FAKE_DATA);
-    this.setTableFilter();
-    this.selection = new SelectionModel<ProductTableRow>(true, []);
+      this.dataSource = new MatTableDataSource<ProductTableRow>(tableRows);
+      this.setTableFilter();
+      this.selection = new SelectionModel<ProductTableRow>(true, []);
+    });
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -175,22 +124,21 @@ export class BrowseProductsComponent implements OnInit {
   placeOrder() {
 
     const order = <Order>{
-      clientId: 1,    // Moq this.authenticationService.currentUserValue.userId,
+      clientId: this.authenticationService.currentUserValue.userId,
       date: new Date(),
       orderDetails: this.selectedProducts.map(p => <OrderDetail>{ product: p.product, amount: p.amount.value }),
-      status: OrderStatus.created,
+      status: OrderStatus.created
     }
 
-    // Moq
-    // this.orderService.placeOrder(order).subscribe(resp =>
-    //   this.snackBar.open('Your order has been placed !', null, {
-    //     duration: 2000,
-    //     horizontalPosition: "right"
-    //   }),
-    //   (error) => this.snackBar.open('Server error, order has not been placed !', null, {
-    //     duration: 2000,
-    //     horizontalPosition: "right"
-    //   }));
+    this.orderService.placeOrder(order).subscribe(resp =>
+      this.snackBar.open('Your order has been placed !', null, {
+        duration: 2000,
+        horizontalPosition: "right"
+      }),
+      (error) => this.snackBar.open('Server error, order has not been placed !', null, {
+        duration: 2000,
+        horizontalPosition: "right"
+      }));
   }
 }
 

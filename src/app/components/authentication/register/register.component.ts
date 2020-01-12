@@ -5,6 +5,9 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Role } from 'src/app/models/enums/Role';
 import { User } from 'src/app/models/User';
 import { Address } from 'src/app/models/Address';
+import { MatSnackBar } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -16,28 +19,24 @@ export class RegisterComponent implements OnInit {
 
   registerForm: FormGroup;
   hide = true;
-  roles = Object.keys(Role).filter(r => r != 'Admin');
+  roles = Object.keys(Role).filter(r => r !== Role.Employee);
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService,
-    //protected notificationService: NotificationService,
+    private userService: UserService,
+    private snackBar: MatSnackBar,
   ) {
-    //redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
   }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern("^[A-Za-z0-9.+_%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$")]],
       password: ['', Validators.required],
       firstName: ['', Validators.required],
-      surename: ['', Validators.required],
+      lastName: ['', Validators.required],
       companyName: [''],
-      phone: [''],
+      phone: ['', Validators.pattern(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)],
       role: [this.roles[0], Validators.required],
       city: ['', Validators.required],
       postalCode: ['', Validators.required],
@@ -46,7 +45,11 @@ export class RegisterComponent implements OnInit {
   }
 
   getErrorMessage() {
-    return this.registerForm.controls.email.hasError('required') ? 'Email is required' : this.registerForm.controls.email.hasError('email') ? 'Wrong email address' : '';
+    return this.registerForm.controls.email.hasError('required') ? 'Email is required' : this.registerForm.controls.email.hasError('pattern') ? 'Wrong email address' : '';
+  }
+
+  getErrorMessagePhone() {
+    return this.registerForm.controls.phone.hasError('pattern') ? 'Wrong phone number' : '';
   }
 
 
@@ -67,12 +70,22 @@ export class RegisterComponent implements OnInit {
 
     newUser.address = shippingDetails;
 
-    // this.authenticationService.login(this.registerForm.controls.email.value, this.registerForm.controls.password.value).subscribe(
-    //   () => {
-    //     //this.notificationService.showSuccessToastr('Pomyślnie zalogowałeś się na konto', '');
-    //     this.router.navigate(['/'])
-    //   },
-    //   (error: HttpErrorResponse) => { }/*this.notificationService.showErrorToastr(error.toString() == "Unknown Error" ? "Serwis jest obecnie niedostępny" : error.toString(), 'Wystąpił błąd podczas wykonywania żądania.' )*/);
+
+
+    this.userService.postUserRegister(newUser).subscribe(
+      () => {
+        this.snackBar.open('Successfully registred account', null, {
+          duration: 2000,
+          horizontalPosition: "right"
+        });
+        this.router.navigate(['/login'])
+      },
+      (error: HttpErrorResponse) => {
+        this.snackBar.open(error.toString(), null, {
+          duration: 2000,
+          horizontalPosition: "right"
+        });
+      });
   }
 
 

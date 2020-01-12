@@ -15,12 +15,11 @@ export class NavbarComponent {
 
   constructor(private router: Router,
     private authenticationService: AuthenticationService) {
-    //Moq
-    //this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Admin;
+    return this.currentUser && this.currentUser.role === Role.Employee;
   }
 
   get isCourier() {

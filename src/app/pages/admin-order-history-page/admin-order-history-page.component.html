@@ -1,4 +1,26 @@
 <div class="d-flex flex-row justify-content-center">
     <h1>Client orders</h1>
 </div>
-<app-order-history-table [orders$]="orders$" [isAdminTable]="true"></app-order-history-table>
+<ng-container *ngIf="(orders$ | async) as orders; else loading">
+
+    <app-order-history-table [orders]="orders" [isAdminTable]="true"></app-order-history-table>
+</ng-container>
+
+
+<ng-template #loading>
+    <div class="centered-loader">
+        <div class="d-flex justify-content-center">
+            <div id="circle">
+                <div class="loader">
+                    <div class="loader">
+                        <div class="loader">
+                            <div class="loader">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="text-center" style="color: #673ab7 ">Fetching client orders...</h3>
+    </div>
+</ng-template>

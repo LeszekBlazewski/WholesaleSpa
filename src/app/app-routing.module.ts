@@ -10,6 +10,8 @@ import { UserOrderHistoryPageComponent } from './pages/user-order-history-page/u
 import { AdminOrderHistoryPageComponent } from './pages/admin-order-history-page/admin-order-history-page.component';
 import { AdminStatisticsPageComponent } from './pages/admin-statistics-page/admin-statistics-page.component';
 import { CourierPendingOrdersPageComponent } from './pages/courier-pending-orders-page/courier-pending-orders-page.component';
+import { AuthGuard } from './guards/auth.guard';
+import { Role } from './models/enums/Role';
 
 
 const routes: Routes = [
@@ -31,27 +33,51 @@ const routes: Routes = [
   },
   {
     path: 'products',
-    component: BrowseProductsComponent
+    component: BrowseProductsComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [Role.Client, Role.Employee]
+    }
   },
   {
     path: 'user/order-history',
-    component: UserOrderHistoryPageComponent
+    component: UserOrderHistoryPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [Role.Client, Role.Employee]
+    }
   },
   {
     path: 'admin/order-history',
-    component: AdminOrderHistoryPageComponent
+    component: AdminOrderHistoryPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [Role.Employee]
+    }
   },
   {
     path: 'admin/products',
-    component: ProductPageComponent
+    component: ProductPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [Role.Employee]
+    }
   },
   {
     path: 'admin/statistics',
-    component: AdminStatisticsPageComponent
+    component: AdminStatisticsPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [Role.Employee]
+    }
   },
   {
     path: 'courier/orders',
-    component: CourierPendingOrdersPageComponent
+    component: CourierPendingOrdersPageComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: [Role.Courier, Role.Employee]
+    }
   },
   {
     path: '**',

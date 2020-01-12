@@ -7,3 +7,32 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cdk-global-overlay-wrapper, .cdk-overlay-container {
     z-index: 99999 !important;
   }
+
+
+  // spinner
+  #circle {
+    width: 100px;
+    height: 100px;	
+  }
+  
+  
+  .loader {
+      width: calc(100% - 0px);
+    height: calc(100% - 0px);
+    border: 8px solid white;
+    border-top: 8px solid #B24BF3;
+    border-radius: 50%;
+    animation: rotate 5s linear infinite;
+  }
+  
+  @keyframes rotate {
+  100% {transform: rotate(360deg);}
+  }
+
+  .centered-loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+  }

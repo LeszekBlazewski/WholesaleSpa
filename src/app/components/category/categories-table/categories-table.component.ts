@@ -45,7 +45,12 @@ export class CategoriesTableComponent implements OnInit {
           horizontalPosition: "right"
         })
       },
-        (error) => { });  //Moq
+        (error) => {
+          this.snackBar.open(`Couldn't update product`, null, {
+            duration: 2000,
+            horizontalPosition: "right"
+          });
+        });
     }, (rejectedReason) => { })
   }
 
@@ -80,7 +85,12 @@ export class CategoriesTableComponent implements OnInit {
           horizontalPosition: "right"
         })
       },
-        (error) => { });  //Moq
+        (error) => {
+          this.snackBar.open(`Couldn't add new category`, null, {
+            duration: 2000,
+            horizontalPosition: "right"
+          });
+        });
     }, (rejectedReason) => { })
   }
 

@@ -1,7 +1,7 @@
 <div class="d-flex flex-row justify-content-center">
     <h1>{{getHeader()}}</h1>
 </div>
-<ng-container *ngIf="dataSource">
+<ng-container *ngIf="dataSource else loading">
     <mat-horizontal-stepper linear #stepper>
         <mat-step completed="false">
             <ng-template matStepLabel>Choose products</ng-template>
@@ -98,8 +98,9 @@
                         <p class="text-danger">** Refreshing the product list will reset current selected products</p>
                     </div>
                 </div>
-                <div class="col-2 text-right">
-                    <button mat-raised-button color="primary" (click)="createTableData()" class="mr-0">Refresh product
+                <div class="col-2 pr-0 text-right">
+                    <button mat-raised-button color="primary" (click)="createTableData()">Refresh
+                        product
                         list</button>
                 </div>
             </div>
@@ -147,3 +148,21 @@
     </mat-horizontal-stepper>
 
 </ng-container>
+
+<ng-template #loading>
+    <div class="centered-loader">
+        <div class="d-flex justify-content-center">
+            <div id="circle">
+                <div class="loader">
+                    <div class="loader">
+                        <div class="loader">
+                            <div class="loader">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3 class="text-center" style="color: #673ab7 ">Loading products...</h3>
+    </div>
+</ng-template>

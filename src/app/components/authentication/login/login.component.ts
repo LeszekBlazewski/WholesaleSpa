@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
-    //protected notificationService: NotificationService,
+    private snackBar: MatSnackBar
   ) {
     //redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -28,13 +29,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.pattern("^[A-Za-z0-9.+_%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$")]],
       password: ['', Validators.required]
     });
   }
 
   getErrorMessage() {
-    return this.loginForm.controls.email.hasError('required') ? 'Field is required' : this.loginForm.controls.email.hasError('email') ? 'Wrong email address' : '';
+    return this.loginForm.controls.email.hasError('required') ? 'Field is required' : this.loginForm.controls.email.hasError('pattern') ? 'Wrong email address' : '';
   }
 
 
@@ -47,10 +48,18 @@ export class LoginComponent implements OnInit {
 
     this.authenticationService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value).subscribe(
       () => {
-        //this.notificationService.showSuccessToastr('Pomyślnie zalogowałeś się na konto', '');
+        this.snackBar.open('Successfully logged in', null, {
+          duration: 2000,
+          horizontalPosition: "right"
+        });
         this.router.navigate(['/'])
       },
-      (error: HttpErrorResponse) => { }/*this.notificationService.showErrorToastr(error.toString() == "Unknown Error" ? "Serwis jest obecnie niedostępny" : error.toString(), 'Wystąpił błąd podczas wykonywania żądania.' )*/);
+      (error) => {
+        this.snackBar.open(error, null, {
+          duration: 2000,
+          horizontalPosition: "right"
+        });
+      });
   }
 
 

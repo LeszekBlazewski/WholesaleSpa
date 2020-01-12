@@ -3,26 +3,6 @@ import { ProductService } from 'src/app/services/product.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { Product } from 'src/app/models/Product';
 import { Category } from 'src/app/models/Category';
-import { ProductStats } from 'src/app/models/ProductStats';
-import { Observable } from 'rxjs';
-
-const FAKE_DATA_CATEGORY: Category[] = [
-  { categoryId: 1, name: 'shoes' },
-  { categoryId: 2, name: 'clothes' },
-  { categoryId: 3, name: 'electronics' },
-]
-
-const FAKE_DATA_PRODUCT: Product[] = [
-  {
-    category: <Category>{ name: 'electronics', categoryId: 1 }, name: 'PC mouse', price: 30.54, stock: 78, productId: 1
-  },
-  {
-    category: <Category>{ name: 'groceries', categoryId: 2 }, name: 'Apples', price: 20.54, stock: 72, productId: 2
-  },
-  {
-    category: <Category>{ name: 'clothing', categoryId: 3 }, name: 'Cap', price: 10.54, stock: 3, productId: 3
-  }
-]
 
 @Component({
   selector: 'app-product-page',
@@ -37,8 +17,6 @@ export class ProductPageComponent implements OnInit, DoCheck {
 
   categories: Category[];
 
-  productStats$: Observable<ProductStats[]>;
-
   iterableDiffer: any;
 
   constructor(private productService: ProductService,
@@ -50,19 +28,9 @@ export class ProductPageComponent implements OnInit, DoCheck {
 
   ngOnInit() {
 
-    // Moq
-    this.products = FAKE_DATA_PRODUCT;
+    this.productService.getAllProducts().subscribe(p => this.products = p);
 
-    this.categories = FAKE_DATA_CATEGORY;
-
-
-    //this.productStats$ = this.productService.getProductStatistics();
-
-    //this.productService.getAllProducts().subscribe(p => this.products = p);
-
-    //this.categoryService.getAllCategories().subscribe(c => this.categories = c);
-
-
+    this.categoryService.getAllCategories().subscribe(c => this.categories = c);
 
   }
 
@@ -70,7 +38,8 @@ export class ProductPageComponent implements OnInit, DoCheck {
     let changes = this.iterableDiffer.diff(this.categories);
 
     if (changes && !this.initaliyLoaded) {
-      //this.productService.getAllProducts().subscribe(p => this.products = p);
+      this.productService.getAllProducts().subscribe(p => this.products = p); // M<oq AND CHECK
+      console.log('test');
     } else
       this.initaliyLoaded = false;
   }

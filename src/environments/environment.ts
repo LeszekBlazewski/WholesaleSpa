@@ -4,16 +4,15 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8856/',
-  userRegisterUrl: "register/",
-  userLoginUrl: "login/",
-  usersUrl: "users/",
-  productsUrl: "products/",
-  statisticsUrl: 'stats/',
-  categoriesUrl: "categories/",
+  baseUrl: 'http://localhost:55279/',
+  categoriesUrl: "category/",
   orderUrl: "orders/",
+  productsUrl: "products/",
+  usersUrl: "users/",
+  userRegisterUrl: "register/",
+  userLoginUrl: "authenticate/",
+  statisticsUrl: 'stats/',
   couriersUrl: "couriers/",
-
 };
 
 /*

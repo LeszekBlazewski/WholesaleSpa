@@ -1,13 +1,14 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost:8856/',
-  userRegisterUrl: "register/",
-  userLoginUrl: "login/",
-  usersUrl: "users/",
-  productsUrl: "products/",
-  statisticsUrl: 'stats/',
-  categoriesUrl: "categories/",
+  baseUrl: 'http://86.105.51.156:4301/',
+  categoriesUrl: "category/",
   orderUrl: "orders/",
+  productsUrl: "products/",
+  usersUrl: "users/",
+  userRegisterUrl: "register/",
+  userLoginUrl: "authenticate/",
+  statisticsUrl: 'stats/',
   couriersUrl: "couriers/",
 };
+
 

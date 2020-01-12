@@ -12,43 +12,48 @@
                 <button type="button" class="btn btn-primary" [routerLink]="['/about']">About</button>
             </li>
             <!-- Produkty-->
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isAdmin || isClient">
                 <button type="button" class="btn btn-primary" [routerLink]="['/products']">Browse products</button>
             </li>
 
-            <!-- Twoje konto-->
-            <div class="dropdown" *ngIf="!currentUser">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Your account
-                </button>
-                <div class="dropdown-menu">
-                    <!-- <button class="dropdown-item" [routerLink]="['/user/details']">User data</button> -->
-                    <button class="dropdown-item" *ngIf="!isClient" [routerLink]="['/user/order-history']">Your
-                        orders</button>
-                    <button class="dropdown-item" (click)="logout()">Log out</button>
-                </div>
-            </div>
-
-            <!-- Panel pracownika -->
-            <div class="dropdown" *ngIf="!isAdmin">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Admin panel
-                </button>
-                <div class="dropdown-menu">
-                    <button class="dropdown-item" [routerLink]="['/admin/products']">Manage products</button>
-                    <button class="dropdown-item" [routerLink]="['/admin/order-history']">Show order history</button>
-                    <button class="dropdown-item" [routerLink]="['/admin/statistics']">Show statistics</button>
-                </div>
-            </div>
-
             <!-- Panel kuriera -->
-            <li class="nav-item" *ngIf="!isCourier">
-                <button type="button" class="btn btn-primary" [routerLink]="['/courier/orders']">Pending orders</button>
+            <li class="nav-item" *ngIf="isCourier">
+                <button type="button" class="btn btn-primary" [routerLink]="['/courier/orders']">Orders</button>
+            </li>
+
+            <li class="nav-item">
+                <!-- Panel pracownika -->
+                <div class="dropdown" *ngIf="isAdmin">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Employee panel
+                    </button>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-item" [routerLink]="['/admin/products']">Manage products</button>
+                        <button class="dropdown-item" [routerLink]="['/admin/order-history']">Show order
+                            history</button>
+                        <button class="dropdown-item" [routerLink]="['/admin/statistics']">Show statistics</button>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <!-- Twoje konto-->
+                <div class="dropdown" *ngIf="currentUser">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                        Your account
+                    </button>
+                    <div class="dropdown-menu">
+                        <!-- <button class="dropdown-item" [routerLink]="['/user/details']">User data</button> -->
+                        <button class="dropdown-item" *ngIf="isClient" [routerLink]="['/user/order-history']">Your
+                            orders</button>
+                        <button class="dropdown-item" (click)="logout()">Log out</button>
+                    </div>
+                </div>
             </li>
 
             <!-- Logowanie  -->
             <li class="nav-item" *ngIf="!currentUser">
-                <button type="button" class="btn btn-primary" [routerLink]="['/login']">Logowanie</button>
+                <button type="button" class="btn btn-primary" [routerLink]="['/login']">Login</button>
             </li>
         </ul>
     </div>
