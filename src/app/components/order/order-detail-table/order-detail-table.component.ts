@@ -11,11 +11,15 @@ export class OrderDetailTableComponent implements OnInit {
 
   @Input() orderDetailsDataSource: MatTableDataSource<OrderDetail>;
 
-  displayedColumnsOrderDetails: string[] = ['category', 'name', 'price', 'amount', 'value'];
+  displayedColumnsOrderDetails: string[] = ['category', 'name', 'price', 'amount', 'value', 'close'];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  closeDetails() {
+    this.orderDetailsDataSource = undefined;
   }
 
 }

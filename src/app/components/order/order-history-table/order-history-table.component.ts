@@ -10,11 +10,13 @@ import { Order } from 'src/app/models/Order';
 })
 export class OrderHistoryTableComponent implements OnInit {
 
-  orderDetailsDataSource: MatTableDataSource<OrderDetail> = new MatTableDataSource();
+  orderDetailsDataSource: MatTableDataSource<OrderDetail>;
 
   @Input() orders: Order[]
 
   @Input() isAdminTable: boolean;
+
+  showDetails: boolean = false;
 
   constructor() { }
 
@@ -61,7 +63,6 @@ export class OrderHistoryTableComponent implements OnInit {
   }
 
   showOrderDetails(orderDetails: OrderDetail[]) {
-    this.orderDetailsDataSource.data = orderDetails;
+    this.orderDetailsDataSource = new MatTableDataSource(orderDetails);
   }
-
 }

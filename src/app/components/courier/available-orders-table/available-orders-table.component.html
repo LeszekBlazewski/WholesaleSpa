@@ -1,9 +1,9 @@
-<ng-container *ngIf="(availableOrders$ | async) as orders; else loading">
+<ng-container *ngIf="availableOrdersDataSource; else loading">
     <h2 class="text-center">
         Available orders
     </h2>
     <div class="d-flex flex-row">
-        <table mat-table [dataSource]="orders" class="mat-elevation-z8 text-center full-width">
+        <table mat-table [dataSource]="availableOrdersDataSource" class="mat-elevation-z8 text-center full-width">
 
             <ng-container matColumnDef="issuedDate">
                 <th mat-header-cell *matHeaderCellDef class="text-center">Issued date</th>

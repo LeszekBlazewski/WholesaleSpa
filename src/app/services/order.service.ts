@@ -18,8 +18,7 @@ export class OrderService {
   }
 
   updateOrderStatus(order: AvailableOrder, courierId: number): Observable<any> {
-    const url = environment.orderUrl + order.orderId.toString();
-    return this.baseService.put(url, { status: order.status, courierId: courierId });
+    return this.baseService.put(environment.orderUrl, { orderId: order.orderId, courierId: courierId, status: order.status });
   }
 
   getAllOrdersForUser(userId: number): Observable<Order[]> {
@@ -36,6 +35,11 @@ export class OrderService {
 
   getCurrentOrdersForCourier(courierId: number): Observable<AvailableOrder[]> {
     const url = environment.orderUrl + environment.couriersUrl.split('s').join('') + courierId.toString();
+    return this.baseService.get(url);
+  }
+
+  getCompletedOrdersForCourier(courierId: number): Observable<AvailableOrder[]> {
+    const url = environment.orderUrl + environment.completedOrdersUrl + courierId.toString();
     return this.baseService.get(url);
   }
 }

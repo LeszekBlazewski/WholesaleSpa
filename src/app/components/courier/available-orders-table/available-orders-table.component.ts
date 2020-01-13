@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { CourierService } from 'src/app/services/courier.service';
-import { Observable } from 'rxjs';
 import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { OrderDetail } from 'src/app/models/OrderDetail';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AvailableOrder } from 'src/app/models/AvailableOrder';
 import { Address } from 'src/app/models/Address';
+import { OrderStatus } from 'src/app/models/enums/OrderStatus';
 
 @Component({
   selector: 'app-available-orders-table',
@@ -17,7 +17,7 @@ export class AvailableOrdersTableComponent implements OnInit {
 
   orderDetailsDataSource: MatTableDataSource<OrderDetail> = new MatTableDataSource();
 
-  availableOrders$: Observable<AvailableOrder[]>;
+  availableOrdersDataSource: MatTableDataSource<AvailableOrder>;
 
   displayedColumns: string[] = ['issuedDate', 'clientAddress', 'totalOrderCost', 'actions'];
 
@@ -35,8 +35,17 @@ export class AvailableOrdersTableComponent implements OnInit {
   }
 
   acceptOrder(order: AvailableOrder) {
-    this.orderService.updateOrderStatus(order, this.authenticationService.currentUserValue.userId).subscribe(resp => {
-      this.courierService.addNewAcceptedOrder(order);
+    const orderCopy = <AvailableOrder>{
+      client: order.client,
+      date: order.date,
+      orderDetails: order.orderDetails,
+      status: OrderStatus.inProgress,
+      orderId: order.orderId,
+      totalValue: order.totalValue,
+    }
+    this.orderService.updateOrderStatus(orderCopy, this.authenticationService.currentUserValue.userId).subscribe(resp => {
+      this.courierService.addOrder(orderCopy);
+      this.availableOrdersDataSource.data = this.availableOrdersDataSource.data.filter(o => o.orderId != orderCopy.orderId);
       this.snackBar.open('Order accepted !', null, {
         duration: 2000,
         horizontalPosition: "right"
@@ -45,12 +54,12 @@ export class AvailableOrdersTableComponent implements OnInit {
   }
 
   fetchAvailableOrders() {
-    this.availableOrders$ = this.orderService.getAllAvailableOrders();
+    this.orderService.getAllAvailableOrders().subscribe(orders => this.availableOrdersDataSource = new MatTableDataSource(orders));
   }
 
   getClientAddress(address: Address) {
     if (address)
-      return `${address.postalCode ? address.postalCode : ''} ${address.city ? address.city : ''}, ${address.address ? address.address : ''}`;
+      return `${address.postalCode ? address.postalCode : ''} ${address.city ? address.city : ''}, ${address.addressDetails ? address.addressDetails : ''}`;
   }
 
 }

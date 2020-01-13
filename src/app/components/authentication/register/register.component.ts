@@ -31,16 +31,16 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern("^[A-Za-z0-9.+_%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$")]],
+      email: ['', [Validators.required, Validators.pattern(/^[A-Za-z0-9.+_%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$/)]],
       password: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       companyName: [''],
-      phone: ['', Validators.pattern(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)],
+      phone: [null, Validators.pattern(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)],
       role: [this.roles[0], Validators.required],
       city: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      address: ['', Validators.required]
+      postalCode: ['', [Validators.required, Validators.pattern(/[0-9]{2}-[0-9]{3}/)]],
+      addressDetails: ['', Validators.required]
     });
   }
 
@@ -52,6 +52,9 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls.phone.hasError('pattern') ? 'Wrong phone number' : '';
   }
 
+  getPostalCodeError() {
+    return this.registerForm.controls.postalCode.hasError('required') ? 'Postal code is required' : this.registerForm.controls.postalCode.hasError('pattern') ? 'Provide valid address' : '';
+  }
 
   onSubmit() {
 
@@ -63,7 +66,7 @@ export class RegisterComponent implements OnInit {
     let newUser: User = this.registerForm.value;
 
     const shippingDetails: Address = <Address>{
-      address: this.registerForm.controls.address.value,
+      addressDetails: this.registerForm.controls.addressDetails.value,
       city: this.registerForm.controls.city.value,
       postalCode: this.registerForm.controls.postalCode.value
     };

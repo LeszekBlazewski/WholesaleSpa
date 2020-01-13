@@ -8,6 +8,7 @@ export const environment = {
   categoriesUrl: "category/",
   orderUrl: "orders/",
   availableOrdersUrl: "available/",
+  completedOrdersUrl: "completed/",
   productsUrl: "products/",
   usersUrl: "users/",
   userRegisterUrl: "register/",

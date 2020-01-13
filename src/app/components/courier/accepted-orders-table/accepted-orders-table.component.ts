@@ -7,6 +7,7 @@ import { CourierService } from 'src/app/services/courier.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Address } from 'src/app/models/Address';
 import { Subscription } from 'rxjs';
+import { OrderStatus } from 'src/app/models/enums/OrderStatus';
 
 @Component({
   selector: 'app-accepted-orders-table',
@@ -18,7 +19,7 @@ export class AcceptedOrdersTableComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
 
-  currentOrdersDataSource: MatTableDataSource<AvailableOrder> = undefined;
+  currentOrdersDataSource: MatTableDataSource<AvailableOrder>;
 
   orderDetailsDataSource: MatTableDataSource<OrderDetail> = new MatTableDataSource();
 
@@ -35,11 +36,13 @@ export class AcceptedOrdersTableComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    //this.orderService.getCurrentOrdersForCourier(this.authenticationService.currentUserValue.userId).subscribe(orders => this.currentOrdersDataSource = new MatTableDataSource(orders));
+    this.orderService.getCurrentOrdersForCourier(this.authenticationService.currentUserValue.userId).subscribe(orders => this.currentOrdersDataSource = new MatTableDataSource(orders));
 
-    const sub = this.courierService.getLatestAcceptedOrder().subscribe(order => {
-      this.currentOrdersDataSource.data.push(order);
-      this.table.renderRows();
+    const sub = this.courierService.getLatestOrder().subscribe(order => {
+      if (order.status == OrderStatus.inProgress) {
+        this.currentOrdersDataSource.data.push(order);
+        this.table.renderRows();
+      }
     })
 
     this.subscription.add(sub);
@@ -53,10 +56,19 @@ export class AcceptedOrdersTableComponent implements OnInit, OnDestroy {
     this.orderDetailsDataSource.data = orderDetails;
   }
 
-  acceptOrder(order: AvailableOrder) {
-    this.orderService.updateOrderStatus(order, this.authenticationService.currentUserValue.userId).subscribe(resp => {
-      this.courierService.addNewAcceptedOrder(order);
-      this.snackBar.open('Order accepted !', null, {
+  deliverOrder(order: AvailableOrder) {
+    const orderCopy = <AvailableOrder>{
+      client: order.client,
+      date: order.date,
+      orderDetails: order.orderDetails,
+      status: OrderStatus.completed,
+      orderId: order.orderId,
+      totalValue: order.totalValue,
+    }
+    this.orderService.updateOrderStatus(orderCopy, this.authenticationService.currentUserValue.userId).subscribe(resp => {
+      this.courierService.addOrder(orderCopy);
+      this.currentOrdersDataSource.data = this.currentOrdersDataSource.data.filter(o => o.orderId != orderCopy.orderId);
+      this.snackBar.open('Order Finalised !', null, {
         duration: 2000,
         horizontalPosition: "right"
       })
@@ -65,7 +77,7 @@ export class AcceptedOrdersTableComponent implements OnInit, OnDestroy {
 
   getClientAddress(address: Address) {
     if (address)
-      return `${address.postalCode ? address.postalCode : ''} ${address.city ? address.city : ''}, ${address.address ? address.address : ''}`;
+      return `${address.postalCode ? address.postalCode : ''} ${address.city ? address.city : ''}, ${address.addressDetails ? address.addressDetails : ''}`;
   }
 
 }

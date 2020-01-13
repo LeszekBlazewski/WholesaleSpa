@@ -1,6 +1,6 @@
 export enum OrderStatus {
     created = 'Created',
-    inProgress = 'In progress',
+    inProgress = 'InProgress',
     completed = 'Completed',
     canceled = 'Canceled',
 }

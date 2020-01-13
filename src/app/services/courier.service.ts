@@ -3,7 +3,6 @@ import { BaseService } from './base.service';
 import { Observable, Subject } from 'rxjs';
 import { CourierStats } from '../models/CourierStats';
 import { environment } from 'src/environments/environment';
-import { Order } from '../models/Order';
 import { AvailableOrder } from '../models/AvailableOrder';
 
 @Injectable({
@@ -19,11 +18,11 @@ export class CourierService {
     return this.baseService.get(environment.couriersUrl + environment.statisticsUrl);
   }
 
-  addNewAcceptedOrder(availableOrder: AvailableOrder) {
+  addOrder(availableOrder: AvailableOrder) {
     this.acceptedOrder$.next(availableOrder);
   }
 
-  getLatestAcceptedOrder(): Observable<AvailableOrder> {
+  getLatestOrder(): Observable<AvailableOrder> {
     return this.acceptedOrder$.asObservable();
   }
 
