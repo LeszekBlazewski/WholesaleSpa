@@ -19,7 +19,7 @@ export class ProductTableComponent implements OnInit {
 
   @Input() categories: Category[];
 
-  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
 
 
   displayedColumns: string[] = ['productId', 'categoryName', 'productName', 'price', 'stock', 'action'];

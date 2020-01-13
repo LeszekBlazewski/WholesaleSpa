@@ -7,6 +7,7 @@ export const environment = {
   baseUrl: 'http://localhost:55279/',
   categoriesUrl: "category/",
   orderUrl: "orders/",
+  availableOrdersUrl: "available/",
   productsUrl: "products/",
   usersUrl: "users/",
   userRegisterUrl: "register/",

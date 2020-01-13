@@ -1,12 +1,12 @@
 import { OrderStatus } from './enums/OrderStatus';
 import { OrderDetail } from './OrderDetail';
+import { User } from './User';
 
-export interface Order {
+export interface AvailableOrder {
     orderId?: number;
-    clientId?: number;
-    courierId?: number;
     date: Date;
-    status: OrderStatus;
     totalValue?: number,
     orderDetails: OrderDetail[];
+    status: OrderStatus;
+    client: User
 }

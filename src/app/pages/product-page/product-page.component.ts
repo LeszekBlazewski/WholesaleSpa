@@ -39,7 +39,6 @@ export class ProductPageComponent implements OnInit, DoCheck {
 
     if (changes && !this.initaliyLoaded) {
       this.productService.getAllProducts().subscribe(p => this.products = p); // M<oq AND CHECK
-      console.log('test');
     } else
       this.initaliyLoaded = false;
   }

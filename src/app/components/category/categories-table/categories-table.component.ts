@@ -16,7 +16,7 @@ export class CategoriesTableComponent implements OnInit {
 
   @Input() categories: Category[];
 
-  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
+  @ViewChild(MatTable, { static: false }) table: MatTable<any>;
 
   displayedColumns: string[] = ['categoryId', 'categoryName', 'action'];
 

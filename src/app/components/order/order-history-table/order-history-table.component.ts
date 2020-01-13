@@ -1,10 +1,7 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { OrderStatus } from 'src/app/models/enums/OrderStatus';
 import { MatTableDataSource, MatSort, MatTable, Sort } from '@angular/material';
 import { OrderDetail } from 'src/app/models/OrderDetail';
-import { Observable, of } from 'rxjs';
 import { Order } from 'src/app/models/Order';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-order-history-table',
@@ -65,10 +62,6 @@ export class OrderHistoryTableComponent implements OnInit {
 
   showOrderDetails(orderDetails: OrderDetail[]) {
     this.orderDetailsDataSource.data = orderDetails;
-  }
-
-  getTotalCost(): number {
-    return this.orderDetailsDataSource.data.reduce((a, b) => (a + (b.amount * b.product.price)), 0);
   }
 
 }

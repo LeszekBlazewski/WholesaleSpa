@@ -10,6 +10,7 @@ export class CourierPendingOrdersPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
