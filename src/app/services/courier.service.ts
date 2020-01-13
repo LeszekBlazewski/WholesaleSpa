@@ -4,13 +4,14 @@ import { Observable, Subject } from 'rxjs';
 import { CourierStats } from '../models/CourierStats';
 import { environment } from 'src/environments/environment';
 import { Order } from '../models/Order';
+import { AvailableOrder } from '../models/AvailableOrder';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourierService {
 
-  private acceptedOrder$: Subject<Order> = new Subject();
+  private acceptedOrder$: Subject<AvailableOrder> = new Subject();
 
   constructor(private baseService: BaseService) { }
 
@@ -18,11 +19,11 @@ export class CourierService {
     return this.baseService.get(environment.couriersUrl + environment.statisticsUrl);
   }
 
-  addNewAcceptedOrder(order: Order) {
-    this.acceptedOrder$.next(order);
+  addNewAcceptedOrder(availableOrder: AvailableOrder) {
+    this.acceptedOrder$.next(availableOrder);
   }
 
-  getLatestAcceptedOrder(): Observable<Order> {
+  getLatestAcceptedOrder(): Observable<AvailableOrder> {
     return this.acceptedOrder$.asObservable();
   }
 

@@ -33,4 +33,9 @@ export class OrderService {
   getAllAvailableOrders(): Observable<AvailableOrder[]> {
     return this.baseService.get(environment.orderUrl + environment.availableOrdersUrl);
   }
+
+  getCurrentOrdersForCourier(courierId: number): Observable<AvailableOrder[]> {
+    const url = environment.orderUrl + environment.couriersUrl.split('s').join('') + courierId.toString();
+    return this.baseService.get(url);
+  }
 }

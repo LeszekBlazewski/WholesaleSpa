@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { CourierService } from 'src/app/services/courier.service';
 import { Observable } from 'rxjs';
-import { Order } from 'src/app/models/Order';
 import { MatTableDataSource, MatSnackBar } from '@angular/material';
 import { OrderDetail } from 'src/app/models/OrderDetail';
 import { AuthenticationService } from 'src/app/services/authentication.service';

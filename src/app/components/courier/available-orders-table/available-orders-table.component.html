@@ -44,19 +44,21 @@
 
     <app-order-detail-table [orderDetailsDataSource]="orderDetailsDataSource"></app-order-detail-table>
 
-    <ng-template #loading>
-        <div class="d-flex justify-content-center">
-            <div id="circle">
+
+</ng-container>
+
+<ng-template #loading>
+    <div class="d-flex justify-content-center">
+        <div id="circle">
+            <div class="loader">
                 <div class="loader">
                     <div class="loader">
                         <div class="loader">
-                            <div class="loader">
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <h3 class="text-center" style="color: #673ab7 ">Loading available orders...</h3>
-    </ng-template>
-</ng-container>
+    </div>
+    <h3 class="text-center" style="color: #673ab7 ">Loading available orders...</h3>
+</ng-template>
