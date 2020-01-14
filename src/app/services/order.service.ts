@@ -42,4 +42,9 @@ export class OrderService {
     const url = environment.orderUrl + environment.completedOrdersUrl + courierId.toString();
     return this.baseService.get(url);
   }
+
+  getOrdersTotalWorth(from: Date, to: Date): Observable<number> {
+    const url = environment.orderUrl + environment.totalWorthUrl;
+    return this.baseService.post(url, { from: from, to: to });
+  }
 }

@@ -24,4 +24,6 @@ export class AdminStatisticsPageComponent implements OnInit {
     this.courierStats$ = this.courierService.getCourierStatistics();
   }
 
+
+
 }

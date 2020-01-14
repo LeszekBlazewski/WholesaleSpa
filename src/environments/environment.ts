@@ -14,6 +14,7 @@ export const environment = {
   userRegisterUrl: "register/",
   userLoginUrl: "authenticate/",
   statisticsUrl: 'stats/',
+  totalWorthUrl: 'totalworth/',
   couriersUrl: "couriers/",
 };
 

@@ -1,0 +1,39 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Orders statistics</mat-card-title>
+        <mat-card-subtitle>Total orders value in given range</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="dateForm">
+            <div class="row justify-content-center">
+                <div class="col-4 pt-2">
+                    <p class="lead"><span class="font-weight-bld">Total value of all orders:
+                            {{totalWorth$ | async | currency}}</span>
+                    </p>
+                </div>
+                <div class="col-3">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="From date" formControlName="dateFrom">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="dateForm.controls.dateFrom.hasError('required')">From date is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-3">
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker1" placeholder="To date" formControlName="dateTo">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-error> {{getDateToError() }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-2  pt-2">
+                    <button class="button" mat-raised-button color="primary"
+                        (click)="getOrdersTotalWorth()">Calculate</button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

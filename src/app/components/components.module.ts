@@ -17,8 +17,9 @@ import { AvailableOrdersTableComponent } from './courier/available-orders-table/
 import { AcceptedOrdersTableComponent } from './courier/accepted-orders-table/accepted-orders-table.component';
 import { DeliveredOrdersTableComponent } from './courier/delivered-orders-table/delivered-orders-table.component';
 import { OrderDetailTableComponent } from './order/order-detail-table/order-detail-table.component';
+import { OrderStatisticsComponent } from './order/order-statistics/order-statistics.component';
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, EditCategoryModalComponent, EditProductModalComponent, OrderHistoryTableComponent, ProductStatsComponent, CourierStatsComponent, AvailableOrdersTableComponent, AcceptedOrdersTableComponent, DeliveredOrdersTableComponent, OrderDetailTableComponent],
+  declarations: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, EditCategoryModalComponent, EditProductModalComponent, OrderHistoryTableComponent, ProductStatsComponent, CourierStatsComponent, AvailableOrdersTableComponent, AcceptedOrdersTableComponent, DeliveredOrdersTableComponent, OrderDetailTableComponent, OrderStatisticsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -26,6 +27,6 @@ import { OrderDetailTableComponent } from './order/order-detail-table/order-deta
     MaterialModule,
     RouterModule
   ],
-  exports: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, OrderHistoryTableComponent, ProductStatsComponent, CourierStatsComponent, AvailableOrdersTableComponent, AcceptedOrdersTableComponent, DeliveredOrdersTableComponent]
+  exports: [LoginComponent, RegisterComponent, BrowseProductsComponent, ProductTableComponent, CategoriesTableComponent, OrderHistoryTableComponent, ProductStatsComponent, CourierStatsComponent, AvailableOrdersTableComponent, AcceptedOrdersTableComponent, DeliveredOrdersTableComponent, OrderStatisticsComponent]
 })
 export class ComponentsModule { }
