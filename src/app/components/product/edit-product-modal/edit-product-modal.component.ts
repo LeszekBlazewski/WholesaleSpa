@@ -24,8 +24,8 @@ export class EditProductModalComponent implements OnInit {
     this.productEditForm = this.formBuilder.group({
       productId: [this.product ? this.product.productId : 0],
       name: [this.product ? this.product.name : '', Validators.required],
-      price: [this.product ? this.product.price : '', Validators.required],
-      stock: [this.product ? this.product.stock : '', Validators.required],
+      price: [this.product ? this.product.price : '', [Validators.required, Validators.pattern(/^\d+\.?\d{0,2}$/)]],
+      stock: [this.product ? this.product.stock : '', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
       category: [this.product ? this.categories.find(c => c.categoryId == this.product.category.categoryId) : ''],
     })
   }
@@ -47,6 +47,10 @@ export class EditProductModalComponent implements OnInit {
 
     const product: Product = this.productEditForm.value;
 
+    product.price = +product.price;
+
+    product.stock = +product.stock;
+
     this.activeModal.close(product);
   }
 
@@ -55,11 +59,11 @@ export class EditProductModalComponent implements OnInit {
   }
 
   getErrorMessagePrice() {
-    return this.productEditForm.controls.price.hasError('required') ? 'Price is required' : '';
+    return this.productEditForm.controls.price.hasError('required') ? 'Price is required' : this.productEditForm.controls.price.hasError('pattern') ? 'Price format X.YY' : '';
   }
 
   getErrorMessageStock() {
-    return this.productEditForm.controls.stock.hasError('required') ? 'Stock is required' : '';
+    return this.productEditForm.controls.stock.hasError('required') ? 'Stock is required' : this.productEditForm.controls.stock.hasError('pattern') ? 'Wrong input' : '';
   }
 
 }

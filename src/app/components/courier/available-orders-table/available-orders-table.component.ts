@@ -15,7 +15,7 @@ import { OrderStatus } from 'src/app/models/enums/OrderStatus';
 })
 export class AvailableOrdersTableComponent implements OnInit {
 
-  orderDetailsDataSource: MatTableDataSource<OrderDetail> = new MatTableDataSource();
+  orderDetailsDataSource: MatTableDataSource<OrderDetail>;
 
   availableOrdersDataSource: MatTableDataSource<AvailableOrder>;
 
@@ -31,7 +31,7 @@ export class AvailableOrdersTableComponent implements OnInit {
   }
 
   showOrderDetails(orderDetails: OrderDetail[]) {
-    this.orderDetailsDataSource.data = orderDetails;
+    this.orderDetailsDataSource = new MatTableDataSource(orderDetails);
   }
 
   acceptOrder(order: AvailableOrder) {

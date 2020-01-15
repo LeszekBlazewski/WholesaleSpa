@@ -46,7 +46,7 @@ export class CategoriesTableComponent implements OnInit {
         })
       },
         (error) => {
-          this.snackBar.open(`Couldn't update product`, null, {
+          this.snackBar.open(`Couldn't update category`, null, {
             duration: 2000,
             horizontalPosition: "right"
           });

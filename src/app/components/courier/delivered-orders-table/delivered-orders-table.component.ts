@@ -18,7 +18,7 @@ export class DeliveredOrdersTableComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatTable, { static: false }) table: MatTable<any>;
 
-  orderDetailsDataSource: MatTableDataSource<OrderDetail> = new MatTableDataSource();
+  orderDetailsDataSource: MatTableDataSource<OrderDetail>;
 
   deliveredOrdersDataSource: MatTableDataSource<AvailableOrder>;
 
@@ -49,7 +49,7 @@ export class DeliveredOrdersTableComponent implements OnInit, OnDestroy {
 
 
   showOrderDetails(orderDetails: OrderDetail[]) {
-    this.orderDetailsDataSource.data = orderDetails;
+    this.orderDetailsDataSource = new MatTableDataSource(orderDetails);
   }
 
   getClientAddress(address: Address) {

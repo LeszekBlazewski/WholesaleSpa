@@ -12,7 +12,7 @@
                 <button type="button" class="btn btn-primary" [routerLink]="['/about']">About</button>
             </li>
             <!-- Produkty-->
-            <li class="nav-item" *ngIf="isAdmin || isClient">
+            <li class="nav-item" *ngIf="isClient">
                 <button type="button" class="btn btn-primary" [routerLink]="['/products']">Browse products</button>
             </li>
 

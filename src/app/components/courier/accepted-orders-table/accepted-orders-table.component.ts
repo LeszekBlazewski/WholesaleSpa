@@ -21,7 +21,7 @@ export class AcceptedOrdersTableComponent implements OnInit, OnDestroy {
 
   currentOrdersDataSource: MatTableDataSource<AvailableOrder>;
 
-  orderDetailsDataSource: MatTableDataSource<OrderDetail> = new MatTableDataSource();
+  orderDetailsDataSource: MatTableDataSource<OrderDetail>;
 
   displayedColumnsOrderDetails: string[] = ['category', 'name', 'price', 'amount', 'value'];
 
@@ -53,7 +53,7 @@ export class AcceptedOrdersTableComponent implements OnInit, OnDestroy {
   }
 
   showOrderDetails(orderDetails: OrderDetail[]) {
-    this.orderDetailsDataSource.data = orderDetails;
+    this.orderDetailsDataSource = new MatTableDataSource(orderDetails);
   }
 
   deliverOrder(order: AvailableOrder) {

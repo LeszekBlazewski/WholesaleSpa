@@ -38,7 +38,7 @@ export class ProductPageComponent implements OnInit, DoCheck {
     let changes = this.iterableDiffer.diff(this.categories);
 
     if (changes && !this.initaliyLoaded) {
-      this.productService.getAllProducts().subscribe(p => this.products = p); // M<oq AND CHECK
+      this.productService.getAllProducts().subscribe(p => this.products = p);
     } else
       this.initaliyLoaded = false;
   }
