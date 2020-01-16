@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource, MatSnackBar, MatStepper } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource, MatSnackBar, MatStepper, MatTable } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
-import { Category } from 'src/app/models/Category';
 import { FormControl } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { ValidateProductAmount } from 'src/app/validators/amount.validator';
@@ -11,6 +10,7 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 import { OrderDetail } from 'src/app/models/OrderDetail';
 import { OrderStatus } from 'src/app/models/enums/OrderStatus';
 import { OrderService } from 'src/app/services/order.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -30,7 +30,8 @@ export class BrowseProductsComponent implements OnInit {
   constructor(private productService: ProductService,
     private snackBar: MatSnackBar,
     private authenticationService: AuthenticationService,
-    private orderService: OrderService) { }
+    private orderService: OrderService,
+    private router: Router) { }
 
   ngOnInit() {
     this.createTableData();
@@ -41,7 +42,7 @@ export class BrowseProductsComponent implements OnInit {
     //1. fetch all products from api
     this.productService.getAllProducts().subscribe(data => {
 
-      const tableRows = data.map(p => <ProductTableRow>{ product: p, amount: new FormControl(1, ValidateProductAmount(p.stock)) });
+      const tableRows = data.map(p => <ProductTableRow>{ product: p, amount: new FormControl(p.stock > 0 ? 1 : 0, ValidateProductAmount(p.stock)) });
 
       this.dataSource = new MatTableDataSource<ProductTableRow>(tableRows);
       this.setTableFilter();
@@ -130,11 +131,14 @@ export class BrowseProductsComponent implements OnInit {
       status: OrderStatus.created
     }
 
-    this.orderService.placeOrder(order).subscribe(resp =>
+    this.orderService.placeOrder(order).subscribe(resp => {
       this.snackBar.open('Your order has been placed !', null, {
         duration: 2000,
         horizontalPosition: "right"
-      }),
+      });
+      this.router.navigate(['user/order-history']);
+    }
+      ,
       (error) => this.snackBar.open('Server error, order has not been placed !', null, {
         duration: 2000,
         horizontalPosition: "right"

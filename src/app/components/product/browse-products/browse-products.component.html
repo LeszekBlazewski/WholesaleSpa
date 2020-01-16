@@ -61,8 +61,8 @@
                                 <input type="number" matInput [formControl]="element.amount" min="0"
                                     onKeyDown="return false">
                                 <mat-error>
-                                    <ng-container *ngIf="element.amount.errors?.validNumber">
-                                        Select value greater than 0
+                                    <ng-container *ngIf="element.amount.errors?.notAvailableAmount">
+                                        Product not available
                                     </ng-container>
                                     <ng-container *ngIf="element.amount.errors?.validGreaterAmount">
                                         Requested quantity can not be greater

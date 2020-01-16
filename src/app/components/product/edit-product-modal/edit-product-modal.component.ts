@@ -26,7 +26,7 @@ export class EditProductModalComponent implements OnInit {
       name: [this.product ? this.product.name : '', Validators.required],
       price: [this.product ? this.product.price : '', [Validators.required, Validators.pattern(/^\d+\.?\d{0,2}$/)]],
       stock: [this.product ? this.product.stock : '', [Validators.required, Validators.pattern(/^[0-9]*$/)]],
-      category: [this.product ? this.categories.find(c => c.categoryId == this.product.category.categoryId) : ''],
+      category: [this.product?.category ? this.categories.find(c => c.categoryId == this.product.category.categoryId) : ''],
     })
   }
 

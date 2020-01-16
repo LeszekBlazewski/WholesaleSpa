@@ -13,7 +13,7 @@ export class OrderService {
   constructor(private baseService: BaseService) { }
 
 
-  placeOrder(order: Order): Observable<any> {
+  placeOrder(order: Order): Observable<Order> {
     return this.baseService.post(environment.orderUrl, order);
   }
 
