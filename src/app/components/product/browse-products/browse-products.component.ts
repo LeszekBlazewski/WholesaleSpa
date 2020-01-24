@@ -67,7 +67,7 @@ export class BrowseProductsComponent implements OnInit {
   setTableFilter() {
     this.dataSource.filterPredicate = (data: ProductTableRow, filter: string) => {
       const filterLowerCase = filter.toLocaleLowerCase();
-      return data.product.category.name.toLocaleLowerCase().includes(filterLowerCase)
+      return data.product.category?.name.toLocaleLowerCase().includes(filterLowerCase)
         || data.product.name.toLocaleLowerCase().includes(filterLowerCase);
     }
   }
