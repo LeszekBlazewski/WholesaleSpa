@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://86.105.51.156:4301/',
+  baseUrl: "http://localhost:55279/",
   categoriesUrl: "category/",
   orderUrl: "orders/",
   availableOrdersUrl: "available/",
@@ -9,7 +9,7 @@ export const environment = {
   usersUrl: "users/",
   userRegisterUrl: "register/",
   userLoginUrl: "authenticate/",
-  statisticsUrl: 'stats/',
-  totalWorthUrl: 'totalworth/',
+  statisticsUrl: "stats/",
+  totalWorthUrl: "totalworth/",
   couriersUrl: "couriers/",
 };
